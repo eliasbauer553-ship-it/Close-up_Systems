@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/1.x/tooling/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "node ../build.js",
+    "beforeBuildCommand": "",
     "beforeDevCommand": "node ../build.js",
     "devPath": "../dist",
     "distDir": "../dist"
