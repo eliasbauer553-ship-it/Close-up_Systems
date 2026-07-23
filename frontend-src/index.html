@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Close-up Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css?v=12"/>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- Reihenfolge ist wichtig: jede Datei baut auf den vorherigen auf.
+     Alle Dateien teilen sich denselben globalen Scope (Standard-Browserverhalten
+     bei mehreren <script>-Tags), daher braucht es keinen Bundler.
+
+     Die "?v=12"-Query-Parameter sind bewusstes Cache-Busting: Cloudflare
+     Worker Static Assets werden vom Browser sehr aggressiv gecacht -- ohne
+     Versionsnummer wuerde nach einem Deploy mit geaenderten Dateien manchmal
+     noch der alte JS-Stand aus dem Browser-Cache geladen. Bei jedem
+     inhaltlichen Update diese Nummer erhoehen. -->
+
+<!-- Kern / Utilities -->
+<script type="text/babel" src="js/core/icons.js?v=12"></script>
+<script type="text/babel" src="js/core/tokens.js?v=12"></script>
+<script type="text/babel" src="js/core/dnd.js?v=12"></script>
+<script type="text/babel" src="js/core/parser.js?v=12"></script>
+<script type="text/babel" src="js/core/pdf.js?v=12"></script>
+<script type="text/babel" src="js/core/charts.js?v=12"></script>
+
+<!-- Daten & Sync -->
+<script type="text/babel" src="js/data/demo-data.js?v=12"></script>
+<script type="text/babel" src="js/data/local-store.js?v=12"></script>
+<script type="text/babel" src="js/data/sync-client.js?v=12"></script>
+<script type="text/babel" src="js/data/live-sync.js?v=12"></script>
+<script type="text/babel" src="js/data/ai-tools-registry.js?v=12"></script>
+
+<!-- UI-Primitive -->
+<script type="text/babel" src="js/components/primitives.js?v=12"></script>
+<script type="text/babel" src="js/components/sticky-note.js?v=12"></script>
+
+<!-- Feature-Komponenten -->
+<script type="text/babel" src="js/components/settings.js?v=12"></script>
+<script type="text/babel" src="js/components/ai-analysis.js?v=12"></script>
+<script type="text/babel" src="js/components/ai-tools-panel.js?v=12"></script>
+<script type="text/babel" src="js/components/script-viewer.js?v=12"></script>
+<script type="text/babel" src="js/components/scripts-section.js?v=12"></script>
+<script type="text/babel" src="js/components/shot-list.js?v=12"></script>
+<script type="text/babel" src="js/components/takes.js?v=12"></script>
+<script type="text/babel" src="js/components/dood-report.js?v=12"></script>
+<script type="text/babel" src="js/components/cast-section.js?v=12"></script>
+<script type="text/babel" src="js/components/locations-section.js?v=12"></script>
+<script type="text/babel" src="js/components/equipment-section.js?v=12"></script>
+<script type="text/babel" src="js/components/budget-section.js?v=12"></script>
+<script type="text/babel" src="js/components/scene-board.js?v=12"></script>
+<script type="text/babel" src="js/components/export-modal.js?v=12"></script>
+<script type="text/babel" src="js/components/import-modal.js?v=12"></script>
+<script type="text/babel" src="js/components/project-modal.js?v=12"></script>
+<script type="text/babel" src="js/components/navigation.js?v=12"></script>
+
+<!-- App-Root -->
+<script type="text/babel" src="js/app.js?v=12"></script>
+</body>
+</html>

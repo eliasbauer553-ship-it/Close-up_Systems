@@ -1,0 +1,56 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root { height: 100%; background: #0B0C0E; overflow: hidden; }
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  color: #E7E6E2;
+}
+
+input, select, textarea, button { font-family: 'IBM Plex Mono', monospace; }
+* { -webkit-tap-highlight-color: transparent; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: #2A2C30; border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Drag-Ghost (siehe js/core/dnd.js) */
+.dg {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .88;
+  transform: rotate(2deg) scale(1.03);
+  box-shadow: 0 24px 60px rgba(0,0,0,.85);
+  border-radius: 10px;
+}
+
+/* Drop-Zonen */
+[data-dz] { transition: box-shadow .1s; }
+[data-dz].dz-ov {
+  box-shadow: 0 0 0 2px #E8A33D, inset 0 0 20px rgba(232,163,61,.1) !important;
+}
+
+/* Drehbuch-Viewer Formatierung */
+.sk-scene   { color:#E8A33D; font-weight:700; letter-spacing:1px; margin:14px 0 2px; font-size:12px; cursor:pointer; }
+.sk-char    { text-align:center; font-weight:600; color:#F2F1EC; margin:8px 0 0; font-size:13px; }
+.sk-dial    { margin:0 60px; color:#C9CBD0; font-size:13px; line-height:1.5; }
+.sk-paren   { margin:0 90px; color:#7A7D83; font-size:12px; font-style:italic; }
+.sk-action  { color:#9A9DA3; font-size:13px; margin:2px 0; line-height:1.6; }
+.sk-trans   { text-align:right; color:#7A7D83; font-style:italic; font-size:11px; }
+.sk-hit     { background: rgba(232,163,61,.25); border-radius: 2px; }
+.sk-hit-cur { background: rgba(232,163,61,.6) !important; color:#15120A !important; border-radius:2px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 767px) {
+  .sk-dial  { margin: 0 14px; }
+  .sk-paren { margin: 0 22px; }
+}
+
+@media print {
+  .np { display: none !important; }
+  body { background: #fff !important; color: #111 !important; overflow: visible !important; }
+  html, #root { height: auto !important; overflow: visible !important; }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "close-up-systems-tauri",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:frontend": "node build.js",
+    "tauri:dev": "npm run build:frontend && tauri dev",
+    "tauri:build": "npm run build:frontend && tauri build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "xlsx": "^0.18.5",
+    "@tauri-apps/cli": "^1.6.0"
+  }
+}
