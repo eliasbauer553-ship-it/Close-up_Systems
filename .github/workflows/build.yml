@@ -57,13 +57,18 @@ jobs:
       - name: npm-Abhaengigkeiten installieren
         run: npm install
 
+      # Zwingend notwendig: Frontend bündeln (erzeugt den dist/-Ordner für Tauri)
+      - name: Frontend bündeln
+        run: node build.js
+
       # Baut die App und erstellt automatisch das GitHub Release
       - name: App bauen & als Release veroeffentlichen
         uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # Falls via "Run workflow" gestartet, wird "v1.0.0-draft" als Fallback genutzt:
+          # Zeigt tauri-action explizit den Pfad zur Konfigurationsdatei
+          configPath: src-tauri/tauri.conf.json
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'v1.0.0-draft' }}
           releaseName: 'Close-up Systems ${{ github.ref_name }}'
           releaseBody: 'Neuer Release-Build von Close-up Systems.'
