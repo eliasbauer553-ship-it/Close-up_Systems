@@ -1,8 +1,8 @@
 [package]
 name = "close-up-systems"
 version = "1.0.0"
-description = "Close-up Systems -- Film-Produktionssoftware"
-edition = "2026"
+description = "Close-up Systems -- Film-Produktionssoftware (Desktop, Tauri)"
+edition = "2021"
 
 [build-dependencies]
 tauri-build = { version = "1", features = [] }
