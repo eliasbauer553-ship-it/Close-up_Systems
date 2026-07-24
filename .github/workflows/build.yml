@@ -76,6 +76,8 @@ jobs:
           releaseBody: 'Neuer Release-Build von Close-up Systems.'
           releaseDraft: true
           prerelease: false
+          configPath: src-tauri/tauri.conf.json
+          tauriScript: npm run tauri:build
 
       # Speichert die Dateien als Action-Artefakte
       - name: Installer als Artefakt hochladen
