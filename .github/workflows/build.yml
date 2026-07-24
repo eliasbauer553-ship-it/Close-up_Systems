@@ -1,4 +1,4 @@
-name: Build Desktop Installers
+name: Build Desktop Installers & Release
 
 on:
   workflow_dispatch: {}
@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write # Wichtig: Erlaubt das Erstellen von GitHub Releases
     strategy:
       fail-fast: false
       matrix:
@@ -55,12 +57,19 @@ jobs:
       - name: npm-Abhaengigkeiten installieren
         run: npm install
 
-      - name: Tauri-CLI installieren
-        run: cargo install tauri-cli --version "^1" --locked
+      # Baut die App und erstellt automatisch das GitHub Release
+      - name: App bauen & als Release veroeffentlichen
+        uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Close-up Systems ${{ github.ref_name }}'
+          releaseBody: 'Neuer Release-Build von Close-up Systems.'
+          releaseDraft: true # Erstellt einen Entwurf unter Releases, den du noch prüfen kannst
+          prerelease: false
 
-      - name: App bauen (Frontend + Installer)
-        run: npm run tauri:build
-
+      # Optional: Speichert die Dateien zusätzlich noch als Action-Artefakte
       - name: Installer als Artefakt hochladen
         uses: actions/upload-artifact@v4
         with:
