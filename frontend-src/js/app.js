@@ -2,14 +2,12 @@
 // App-Root: verwaltet den globalen State, entscheidet zwischen lokalem
 // Speicher und Cloudflare-D1-Sync, und rendert die aktive Sektion.
 
+// Desktop-Version: immer der Desktop-Modus mit linker Seitenleiste --
+// der mobile Modus mit unterer Menueleiste ist hier bewusst deaktiviert,
+// da diese Datei die eigenstaendige Desktop-App ist (Fenster hat ohnehin
+// eine Mindestbreite von 980px, siehe tauri.conf.json -> minWidth).
 function useBreakpoint() {
-  const [w, setW] = React.useState(window.innerWidth);
-  React.useEffect(() => {
-    const h = () => setW(window.innerWidth);
-    window.addEventListener('resize', h);
-    return () => window.removeEventListener('resize', h);
-  }, []);
-  return { mob: w < 768, tab: w >= 768 && w < 1200, desk: w >= 1200 };
+  return { mob: false, tab: false, desk: true };
 }
 
 function App() {
