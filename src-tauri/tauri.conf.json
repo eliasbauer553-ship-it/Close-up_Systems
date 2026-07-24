@@ -1,8 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/1.x/tooling/cli/schema.json",
   "identifier": "com.closeupsystems.desktop",
-  "productName": "Close-up Systems",
-  "version": "1.0.0",
   "build": {
     "beforeBuildCommand": "node ../build.js",
     "beforeDevCommand": "node ../build.js",
