@@ -44,7 +44,8 @@ input, select, textarea, button { font-family: 'IBM Plex Mono', monospace; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-@media (max-width: 767px) {
+/* NACHHER: Greift NUR bei schmalen Bildschirmen IM HOCHFORMAT */
+@media (max-width: 767px) and (orientation: portrait) {
   .sk-dial  { margin: 0 14px; }
   .sk-paren { margin: 0 22px; }
 }
