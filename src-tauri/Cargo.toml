@@ -8,9 +8,14 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = [] }
+tauri = { version = "1", features = ["shell-open"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+
+[features]
+# Das ist der entscheidende Teil, der Tauri für den Release-Build fehlt:
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
 
 [[bin]]
 name = "close-up-systems"
