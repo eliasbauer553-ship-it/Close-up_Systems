@@ -65,7 +65,7 @@ jobs:
       - name: Bereinige tauri.conf.json (BOM entfernen)
         run: node -e "const fs = require('fs'); const p = 'src-tauri/tauri.conf.json'; let c = fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, ''); JSON.parse(c); fs.writeFileSync(p, c, 'utf8'); console.log('tauri.conf.json erfolgreich gereinigt!');"
 
-      # App bauen & als Release veröffentlichen
+    # App bauen & als Release veröffentlichen
       - name: App bauen & als Release veroeffentlichen
         uses: tauri-apps/tauri-action@v1
         env:
@@ -76,7 +76,7 @@ jobs:
           releaseBody: 'Neuer Release-Build von Close-up Systems.'
           releaseDraft: true
           prerelease: false
-          tauriScript: npx tauri
+          projectPath: src-tauri
 
       # Speichert die Dateien als Action-Artefakte
       - name: Installer als Artefakt hochladen
