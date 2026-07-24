@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     permissions:
-      contents: write # Wichtig: Erlaubt das Erstellen von GitHub Releases
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -36,7 +36,7 @@ jobs:
       - name: Rust-Abhaengigkeiten cachen
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: "./src-tauri -> target"
+          workspaces: "src-tauri -> target"
 
       - name: Linux-Systemabhaengigkeiten installieren
         if: matrix.platform == 'ubuntu-22.04'
@@ -63,13 +63,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
+          # Falls via "Run workflow" gestartet, wird "v1.0.0-draft" als Fallback genutzt:
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'v1.0.0-draft' }}
           releaseName: 'Close-up Systems ${{ github.ref_name }}'
           releaseBody: 'Neuer Release-Build von Close-up Systems.'
-          releaseDraft: true # Erstellt einen Entwurf unter Releases, den du noch prüfen kannst
+          releaseDraft: true
           prerelease: false
 
-      # Optional: Speichert die Dateien zusätzlich noch als Action-Artefakte
+      # Speichert die Dateien als Action-Artefakte
       - name: Installer als Artefakt hochladen
         uses: actions/upload-artifact@v4
         with:
