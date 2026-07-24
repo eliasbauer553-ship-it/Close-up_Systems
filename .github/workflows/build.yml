@@ -72,8 +72,6 @@ jobs:
           releaseBody: 'Neuer Release-Build von Close-up Systems.'
           releaseDraft: true
           prerelease: false
-          # Übergibt den Pfad direkt als CLI-Argument an Tauri
-          args: --config src-tauri/tauri.conf.json
 
       # Speichert die Dateien als Action-Artefakte
       - name: Installer als Artefakt hochladen
